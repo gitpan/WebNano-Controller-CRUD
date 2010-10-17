@@ -48,7 +48,7 @@ my %WriteMakefileArgs = (
     'WebNano::Controller' => '0',
     'WebNano::Renderer::TT' => '0'
   },
-  'VERSION' => '0.001',
+  'VERSION' => '0.002',
   'test' => {
     'TESTS' => 't/*.t'
   }

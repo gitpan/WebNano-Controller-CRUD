@@ -27,6 +27,9 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: WebNano-Controller-CRUD
+no_index:
+  directory:
+    - t/lib
 requires:
   Class::MOP: 0
   Cwd: 0
@@ -41,4 +44,4 @@ requires:
   WebNano::Renderer::TT: 0
 resources:
   repository: http://github.com/zby/WebNano-Controller-CRUD
-version: 0.001
+version: 0.002
