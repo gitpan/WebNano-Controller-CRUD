@@ -33,10 +33,11 @@ my %WriteMakefileArgs = (
   },
   'DISTNAME' => 'WebNano-Controller-CRUD',
   'EXE_FILES' => [],
-  'LICENSE' => 'perl',
+  'LICENSE' => 'artistic_2',
   'NAME' => 'WebNano::Controller::CRUD',
   'PREREQ_PM' => {
     'Class::MOP' => '0',
+    'Config::General' => '0',
     'Cwd' => '0',
     'DBIx::Class' => '0',
     'File::Spec::Functions' => '0',
@@ -48,7 +49,7 @@ my %WriteMakefileArgs = (
     'WebNano::Controller' => '0',
     'WebNano::Renderer::TT' => '0'
   },
-  'VERSION' => '0.002',
+  'VERSION' => '0.003',
   'test' => {
     'TESTS' => 't/*.t'
   }

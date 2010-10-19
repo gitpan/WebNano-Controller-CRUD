@@ -1,4 +1,7 @@
 package WebNano::Controller::CRUD;
+BEGIN {
+  $WebNano::Controller::CRUD::VERSION = '0.003';
+}
 use Moose;
 use MooseX::NonMoose;
 use Class::MOP;
@@ -153,7 +156,7 @@ WebNano::Controller::CRUD - A base controller implementing CRUD operations (EXPE
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
@@ -197,10 +200,11 @@ Zbigniew Lukasiak <zby@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Zbigniew Lukasiak <zby@cpan.org>.
+This software is Copyright (c) 2010 by Zbigniew Lukasiak <zby@cpan.org>.
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+This is free software, licensed under:
+
+  The Artistic License 2.0
 
 =cut
 
