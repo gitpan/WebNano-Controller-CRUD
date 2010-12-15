@@ -4,7 +4,11 @@ Revision history for WebNano::Renderer::TT
     Initial release.
 
 0.002 17-10-2010
-    after_POST
+    after_POST.
 
 0.003     2010-10-19
     Prerequisites added
+    
+0.004     2010-12-15
+    Adapted to changes in WebNano.
+

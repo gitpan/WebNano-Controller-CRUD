@@ -1,6 +1,6 @@
 package WebNano::Controller::CRUD;
 BEGIN {
-  $WebNano::Controller::CRUD::VERSION = '0.003';
+  $WebNano::Controller::CRUD::VERSION = '0.004';
 }
 use Moose;
 use MooseX::NonMoose;
@@ -24,6 +24,16 @@ has record_actions => (
     default => sub { { view => 1, 'delete' => 1, edit => 1 } }
 );
 
+has primary_columns => (
+    is => 'ro',
+    lazy_build => 1,
+);
+sub _build_primary_columns {
+    my $self = shift;
+    my $source = $self->app->schema->source( $self->rs_name );
+    return [ $source->primary_columns ];
+}
+
 my $FULLPATH;
 BEGIN { use Cwd (); $FULLPATH = Cwd::abs_path(__FILE__) }
 
@@ -41,23 +51,32 @@ sub columns {
 }
 
 
-sub parse_path {
-    my( $self, $path ) = @_;
-    my $parsed;
-    my $method_reg = join '|', keys %{ $self->record_actions };
-    if( $path =~ s{^(\d+)/($method_reg|)($|/)}{} ){
-        $parsed->{ids} =  [ $1 ];
-        $parsed->{method} = $2 || 'view';
-        $parsed->{args} = [ split /\//, $path ];
-        return $parsed;
+sub _get_parts {
+    my $self = shift;
+    my @args = @_;
+    my @pks = @{ $self->primary_columns };
+    my @ids;
+    for my $i ( 0 .. $#pks ){
+        if( defined $args[$i] && $args[$i] =~ /^\d+$/ ){
+            push @ids, $args[$i];
+        }
+        else{
+            return;
+        }
     }
-    return;
+    my $method = $args[ $#pks + 1 ] || 'view';
+    my $method_reg = join '|', keys %{ $self->record_actions };
+    return if $method !~ /$method_reg/;
+    return {
+        ids => \@ids,
+        method => $args[ $#pks + 1 ] || 'view',
+        args => [ @args[ $#pks + 2, $#args ] ],
+    };
 }
 
 around 'local_dispatch' => sub {
-    my( $orig, $self, $path, @args ) = @_;
-    my $parsed = $self->parse_path( $path );
-    if( $parsed ){
+    my( $orig, $self, @args ) = @_;
+    if( my $parsed = $self->_get_parts( @args ) ){
         my $rs = $self->app->schema->resultset( $self->rs_name );
         my $record = $rs->find( @{ $parsed->{ids} } );
         if( ! $record ) {
@@ -67,9 +86,9 @@ around 'local_dispatch' => sub {
             return $res;
         }
         my $method = $parsed->{method};
-        return $self->$method( $record, @{ $parsed->{args} }, @args );
+        return $self->$method( $record, @{ $parsed->{args} } );
     }
-    return $self->$orig( $path, @args );
+    return $self->$orig( @args );
 };
 
 sub index_action { shift->list_action( @_ ) }
@@ -106,6 +125,7 @@ sub create_action {
     $form->field( 'submit' )->value( 'Create' );
     return $self->render( template => 'edit.tt', form => $form->render );
 }
+
 
 sub view {
     my ( $self, $record ) = @_;
@@ -156,7 +176,7 @@ WebNano::Controller::CRUD - A base controller implementing CRUD operations (EXPE
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 

@@ -4,7 +4,7 @@
       "Zbigniew Lukasiak <zby@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102341, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 4.102342, CPAN::Meta::Converter version 2.102400",
    "license" : [
       "artistic_2"
    ],
@@ -35,7 +35,7 @@
             "HTML::FormHandler::Moose" : 0,
             "Moose" : 0,
             "MooseX::NonMoose" : 0,
-            "WebNano" : 0,
+            "WebNano" : "5",
             "WebNano::Controller" : 0,
             "WebNano::Renderer::TT" : 0
          }
@@ -67,6 +67,6 @@
          "web" : "http://github.com/zby/WebNano-Controller-CRUD"
       }
    },
-   "version" : "0.003"
+   "version" : "0.004"
 }
 

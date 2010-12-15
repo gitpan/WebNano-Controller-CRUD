@@ -45,11 +45,11 @@ my %WriteMakefileArgs = (
     'HTML::FormHandler::Moose' => '0',
     'Moose' => '0',
     'MooseX::NonMoose' => '0',
-    'WebNano' => '0',
+    'WebNano' => '5',
     'WebNano::Controller' => '0',
     'WebNano::Renderer::TT' => '0'
   },
-  'VERSION' => '0.003',
+  'VERSION' => '0.004',
   'test' => {
     'TESTS' => 't/*.t'
   }
