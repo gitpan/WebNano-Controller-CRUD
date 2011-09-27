@@ -6,7 +6,6 @@ META.json
 META.yml
 Makefile.PL
 README
-a
 dist.ini
 lib/WebNano/Controller/CRUD.pm
 lib/WebNano/Controller/CRUD/templates/delete.tt

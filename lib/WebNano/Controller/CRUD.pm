@@ -1,6 +1,6 @@
 package WebNano::Controller::CRUD;
 BEGIN {
-  $WebNano::Controller::CRUD::VERSION = '0.004';
+  $WebNano::Controller::CRUD::VERSION = '0.005';
 }
 use Moose;
 use MooseX::NonMoose;
@@ -111,8 +111,9 @@ sub create_action {
     my $form_class = $self->form_class;
     Class::MOP::load_class( $form_class );
     my $item = $self->app->schema->resultset( $self->rs_name )->new_result( {} );
+    my $params = $req->parameters->as_hashref_mixed;
     my $form = $form_class->new( 
-        params => $req->parameters->as_hashref, 
+        params => $params, 
         schema => $self->app->schema,
         item   => $item,
     );
@@ -151,9 +152,10 @@ sub edit {
     my $req = $self->req;
     my $form_class = $self->form_class;
     Class::MOP::load_class( $form_class );
+    my $params = $req->parameters->as_hashref_mixed;
     my $form = $form_class->new( 
         item   => $record,
-        params => $req->parameters->as_hashref, 
+        params => $params,
     );
     if( $req->method eq 'POST' && $form->process() ){
         my $res = $req->new_response();
@@ -176,7 +178,7 @@ WebNano::Controller::CRUD - A base controller implementing CRUD operations (EXPE
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -224,7 +226,7 @@ This software is Copyright (c) 2010 by Zbigniew Lukasiak <zby@cpan.org>.
 
 This is free software, licensed under:
 
-  The Artistic License 2.0
+  The Artistic License 2.0 (GPL Compatible)
 
 =cut
 
