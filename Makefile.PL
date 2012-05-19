@@ -24,7 +24,6 @@ my %WriteMakefileArgs = (
     'Plack::Test' => '0',
     'Test::More' => '0',
     'WebNano' => '0',
-    'WebNano::DirController' => '0',
     'WebNano::Renderer::TT' => '0',
     'overload' => '0'
   },
@@ -45,11 +44,11 @@ my %WriteMakefileArgs = (
     'HTML::FormHandler::Moose' => '0',
     'Moose' => '0',
     'MooseX::NonMoose' => '0',
-    'WebNano' => '5',
+    'WebNano' => '0.007',
     'WebNano::Controller' => '0',
     'WebNano::Renderer::TT' => '0'
   },
-  'VERSION' => '0.005',
+  'VERSION' => '0.006',
   'test' => {
     'TESTS' => 't/*.t'
   }

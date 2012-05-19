@@ -1,6 +1,6 @@
 package WebNano::Controller::CRUD;
 BEGIN {
-  $WebNano::Controller::CRUD::VERSION = '0.005';
+  $WebNano::Controller::CRUD::VERSION = '0.006';
 }
 use Moose;
 use MooseX::NonMoose;
@@ -53,7 +53,7 @@ sub columns {
 
 sub _get_parts {
     my $self = shift;
-    my @args = @_;
+    my @args = @{ $self->path };
     my @pks = @{ $self->primary_columns };
     my @ids;
     for my $i ( 0 .. $#pks ){
@@ -75,8 +75,8 @@ sub _get_parts {
 }
 
 around 'local_dispatch' => sub {
-    my( $orig, $self, @args ) = @_;
-    if( my $parsed = $self->_get_parts( @args ) ){
+    my( $orig, $self ) = @_;
+    if( my $parsed = $self->_get_parts() ){
         my $rs = $self->app->schema->resultset( $self->rs_name );
         my $record = $rs->find( @{ $parsed->{ids} } );
         if( ! $record ) {
@@ -88,7 +88,7 @@ around 'local_dispatch' => sub {
         my $method = $parsed->{method};
         return $self->$method( $record, @{ $parsed->{args} } );
     }
-    return $self->$orig( @args );
+    return $self->$orig();
 };
 
 sub index_action { shift->list_action( @_ ) }
@@ -178,7 +178,7 @@ WebNano::Controller::CRUD - A base controller implementing CRUD operations (EXPE
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
