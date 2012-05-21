@@ -16,11 +16,14 @@ build_requires:
   Test::More: 0
   WebNano: 0
   WebNano::Renderer::TT: 0
+  base: 0
   overload: 0
+  strict: 0
+  warnings: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930001'
+generated_by: 'Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921'
 license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,6 +37,7 @@ requires:
   Config::General: 0
   Cwd: 0
   DBIx::Class: 0
+  DateTime::Format::SQLite: 0
   File::Spec::Functions: 0
   HTML::FormHandler::Model::DBIC: 0
   HTML::FormHandler::Moose: 0
@@ -44,4 +48,4 @@ requires:
   WebNano::Renderer::TT: 0
 resources:
   repository: http://github.com/zby/WebNano-Controller-CRUD
-version: 0.006
+version: 0.007

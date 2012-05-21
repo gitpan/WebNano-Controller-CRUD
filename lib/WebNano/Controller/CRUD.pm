@@ -1,6 +1,6 @@
 package WebNano::Controller::CRUD;
-BEGIN {
-  $WebNano::Controller::CRUD::VERSION = '0.006';
+{
+  $WebNano::Controller::CRUD::VERSION = '0.007';
 }
 use Moose;
 use MooseX::NonMoose;
@@ -174,11 +174,11 @@ sub edit {
 
 =head1 NAME
 
-WebNano::Controller::CRUD - A base controller implementing CRUD operations (EXPERIMENTAL!)
+WebNano::Controller::CRUD
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 

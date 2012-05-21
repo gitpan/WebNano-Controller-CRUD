@@ -6,3 +6,7 @@ Revision history for WebNano::Controller::CRUD
 0.006     2012-05-19
     updated for WebNano 0.007
 
+0.007     2012-05-21
+    removed stringification of Dvd (was causing failures)
+
+
